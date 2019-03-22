@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+  lnd:
+    image: josudoey/lnd:v0.5.2-beta
+    extra_hosts:
+      - "bitcoind:127.0.0.1"
+    volumes:
+      - "./data:/root/"
+    ports:
+      - "10009:10009"
+      - "9735:9735"
+    command: lnd --noseedbackup --logdir=/data --bitcoin.active --bitcoin.testnet --bitcoin.node=bitcoind  --bitcoind.rpchost=bitcoind:8332 --bitcoind.rpcuser=bitcoin --bitcoind.rpcpass=password --bitcoind.zmqpubrawblock=tcp://bitcoind:28332 --bitcoind.zmqpubrawtx=tcp://bitcoind:28333 --rpclisten=0.0.0.0:10009 --debuglevel=info --rejectpush --minchansize=20000 --maxpendingchannels=1 --bitcoin.basefee=1000 --bitcoin.feerate=0 --bitcoin.timelockdelta=144
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      driver: default
