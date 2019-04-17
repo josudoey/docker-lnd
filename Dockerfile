@@ -10,8 +10,7 @@ ENV GODEBUG netdns=cgo
 
 RUN go get -d -v github.com/lightningnetwork/lnd
 
-RUN cd /go/src/github.com/lightningnetwork/lnd && git checkout v0.5.2-beta
-
+RUN cd /go/src/github.com/lightningnetwork/lnd && git checkout v0.6-beta-rc4
 
 RUN cd /go/src/github.com/lightningnetwork/lnd \
 &&  make \
