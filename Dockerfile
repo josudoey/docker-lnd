@@ -1,6 +1,6 @@
 FROM golang:1.11-alpine as builder
 
-MAINTAINER Joey Fang <josudoey@gmail.com>
+LABEL maintainer="josudoey@gmail.com"
 
 RUN apk add --no-cache --update alpine-sdk \
     git \
@@ -10,7 +10,7 @@ ENV GODEBUG netdns=cgo
 
 RUN go get -d -v github.com/lightningnetwork/lnd
 
-RUN cd /go/src/github.com/lightningnetwork/lnd && git checkout v0.6.1-beta-rc2
+RUN cd /go/src/github.com/lightningnetwork/lnd && git checkout v0.7.0-beta-rc2
 
 RUN cd /go/src/github.com/lightningnetwork/lnd \
 &&  make \
