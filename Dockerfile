@@ -1,14 +1,15 @@
-FROM golang:1.15.7-alpine as builder
-
+FROM golang:1.16.15-alpine as builder
 RUN apk add --no-cache --update alpine-sdk \
     git \
     make
 
 ENV GODEBUG netdns=cgo
 
-RUN go get -d -v github.com/lightningnetwork/lnd
+RUN mkdir -p /go/src/github.com/lightningnetwork
 
-RUN cd /go/src/github.com/lightningnetwork/lnd && git checkout v0.13.4-beta
+RUN cd /go/src/github.com/lightningnetwork && git clone https://github.com/lightningnetwork/lnd 
+
+RUN cd /go/src/github.com/lightningnetwork/lnd && git checkout v0.14.2-beta
 
 RUN cd /go/src/github.com/lightningnetwork/lnd \
     &&  make \

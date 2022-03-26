@@ -2,7 +2,7 @@ version: '2'
 
 services:
   lnd:
-    image: josudoey/lnd:v0.13.4-beta
+    image: josudoey/lnd:v0.14.2-beta
     extra_hosts:
       - "bitcoind:127.0.0.1"
     volumes:
