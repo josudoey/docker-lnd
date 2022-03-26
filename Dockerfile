@@ -8,11 +8,11 @@ ENV GODEBUG netdns=cgo
 
 RUN go get -d -v github.com/lightningnetwork/lnd
 
-RUN cd /go/src/github.com/lightningnetwork/lnd && git checkout v0.12.1-beta
+RUN cd /go/src/github.com/lightningnetwork/lnd && git checkout v0.13.4-beta
 
 RUN cd /go/src/github.com/lightningnetwork/lnd \
-&&  make \
-&&  make install
+    &&  make \
+    &&  make install
 
 # Start a new, final image to reduce size.
 FROM alpine as final
